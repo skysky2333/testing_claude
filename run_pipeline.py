@@ -404,11 +404,11 @@ def step_06_images(native_pdb):
         for mut_subdir in superpose_dir.glob("mut_*"):
             if mut_subdir.is_dir():
                 for pdb_file in mut_subdir.glob("*.pdb"):
-                output_png = step_dir / f"{mut_subdir.name}_{pdb_file.stem}.png"
-                if run_pymol_rendering(pdb_file, output_png):
-                    logger.info(f"Rendered mutant structure: {output_png}")
-                else:
-                    logger.error(f"Failed to render {pdb_file}")
+                    output_png = step_dir / f"{mut_subdir.name}_{pdb_file.stem}.png"
+                    if run_pymol_rendering(pdb_file, output_png):
+                        logger.info(f"Rendered mutant structure: {output_png}")
+                    else:
+                        logger.error(f"Failed to render {pdb_file}")
     
     # Also render any structures from 04_ddg if superposition wasn't done
     ddg_dir = OUTPUT / "04_ddg"
@@ -416,12 +416,12 @@ def step_06_images(native_pdb):
         for mut_subdir in ddg_dir.glob("mut_*"):
             if mut_subdir.is_dir():
                 for pdb_file in mut_subdir.glob("*_relaxed*.pdb"):
-                output_png = step_dir / f"{mut_subdir.name}_{pdb_file.stem}.png"
-                if not output_png.exists():  # Don't overwrite superposed versions
-                    if run_pymol_rendering(pdb_file, output_png):
-                        logger.info(f"Rendered mutant structure: {output_png}")
-                    else:
-                        logger.error(f"Failed to render {pdb_file}")
+                    output_png = step_dir / f"{mut_subdir.name}_{pdb_file.stem}.png"
+                    if not output_png.exists():  # Don't overwrite superposed versions
+                        if run_pymol_rendering(pdb_file, output_png):
+                            logger.info(f"Rendered mutant structure: {output_png}")
+                        else:
+                            logger.error(f"Failed to render {pdb_file}")
     
     logger.info("Image generation completed")
     return step_dir
