@@ -1,0 +1,16 @@
+# Example mutations file for testing
+# Each line represents one set of mutations to apply simultaneously
+# Format: [WT_AA][Position][Mutant_AA]
+# Multiple mutations per line separated by commas
+
+# Single mutations
+A5G
+L10P
+F15Y
+
+# Double mutations  
+A5G,L10P
+F15Y,V20I
+
+# Triple mutation
+A5G,L10P,F15Y

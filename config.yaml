@@ -1,0 +1,44 @@
+# Configuration file for Rosetta Protein Folding and Mutation Analysis Pipeline
+
+# Rosetta installation path
+rosetta_path: "/usr/local/rosetta.source.release-371"
+
+# Input files
+protein_fasta: "protein.faa"
+mutations_file: "mutations.txt"
+
+# Folding parameters
+nstruct_folding: 1000    # Number of structures to generate during ab initio folding
+nstruct_relax: 10        # Number of structures to generate during relaxation
+ddg_iterations: 50       # Number of iterations for ddg_monomer calculations
+
+# Computational resources
+threads_folding: 4       # Number of threads for folding
+threads_ddg: 2          # Number of threads for DDG calculations
+
+# Output options
+save_intermediate: true  # Keep intermediate files
+compress_output: false   # Compress large output files
+
+# Advanced options
+fragment_picking:
+  n_candidates: 200      # Number of fragment candidates
+  n_frags: 25           # Number of fragments to pick
+  frag_sizes: [3, 9]    # Fragment sizes
+
+relaxation:
+  fast_mode: true       # Use fast relaxation mode
+  constrain_coords: true # Constrain to starting coordinates
+  ramp_constraints: false # Don't ramp constraints
+
+ddg_calculation:
+  local_opt_only: false  # Optimize beyond local shell
+  min_cst: true         # Use minimization constraints
+  dump_pdbs: true       # Output mutant PDB files
+  ramp_repulsive: true  # Ramp repulsive weights
+
+visualization:
+  image_width: 800      # PNG image width
+  image_height: 600     # PNG image height
+  image_dpi: 300        # PNG resolution
+  ray_tracing: true     # Use ray tracing for high quality images
